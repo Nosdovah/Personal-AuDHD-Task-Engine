@@ -135,10 +135,10 @@ export default function AddTaskForm({ isOpen, onClose }) {
                     onChange={(e) => setCategory(e.target.value)}
                     className="w-full bg-slate-900 border border-slate-700 rounded-none px-3 py-2 text-slate-200 focus:outline-none focus:border-sky-500 transition-all text-xs"
                   >
-                    <option value="APPETIZER">🥗 APPETIZER (QUICK)</option>
-                    <option value="MAIN">🥩 MAIN COURSE (CORE)</option>
-                    <option value="DESSERT">🍰 DESSERT (CREATIVE)</option>
-                    <option value="SIDE">🍟 SIDE QUEST (ADDITIONAL)</option>
+                    <option value="APPETIZER">APPETIZER (QUICK)</option>
+                    <option value="MAIN">MAIN COURSE (CORE)</option>
+                    <option value="DESSERT">DESSERT (CREATIVE)</option>
+                    <option value="SIDE">SIDE QUEST (ADDITIONAL)</option>
                   </select>
                 </div>
 
@@ -150,9 +150,9 @@ export default function AddTaskForm({ isOpen, onClose }) {
                     onChange={(e) => setEnergy(e.target.value)}
                     className="w-full bg-slate-900 border border-slate-700 rounded-none px-3 py-2 text-slate-200 focus:outline-none focus:border-sky-500 transition-all text-xs"
                   >
-                    <option value="LOW">🟢 LOW ENERGY</option>
-                    <option value="MEDIUM">🟡 MEDIUM ENERGY</option>
-                    <option value="HIGH">🔴 HIGH ENERGY</option>
+                    <option value="LOW">LOW ENERGY</option>
+                    <option value="MEDIUM">MEDIUM ENERGY</option>
+                    <option value="HIGH">HIGH ENERGY</option>
                   </select>
                 </div>
               </div>
@@ -187,7 +187,7 @@ export default function AddTaskForm({ isOpen, onClose }) {
 
               {success && (
                 <div className="text-xs text-emerald-400 bg-emerald-950/20 border border-emerald-500/30 p-3 text-center font-bold uppercase tracking-widest">
-                  🎉 TASK SUCCESSFULLY REGISTERED
+                  TASK SUCCESSFULLY REGISTERED
                 </div>
               )}
 
