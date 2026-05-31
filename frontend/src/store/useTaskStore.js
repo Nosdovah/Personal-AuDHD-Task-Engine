@@ -131,9 +131,15 @@ export const useTaskStore = create((set, get) => ({
       throw new Error("Anti-Vagueness Guardrail: 'Definition of Done' harus diisi minimal 10 karakter.");
     }
     
+    const { currentEnergy, activeTasks } = get();
+    
+    // Jika user sedang di console harian dan slot kategori ini kosong,
+    // langsung set status ke QUEUE agar tugas langsung muncul di layar.
+    const shouldQueue = currentEnergy && !activeTasks.some(t => t.menu_category === task.menu_category);
+    
     const newTask = {
       id: generateUUID(),
-      status: 'BACKLOG',
+      status: shouldQueue ? 'QUEUE' : 'BACKLOG',
       interest_level: Number(task.interest_level),
       ...task
     };
@@ -147,9 +153,17 @@ export const useTaskStore = create((set, get) => ({
       throw new Error(`Gagal menyimpan ke database: ${error.message}`);
     }
 
-    set((state) => ({
-      backlog: [...state.backlog, data ? data[0] : newTask]
-    }));
+    const savedTask = data ? data[0] : newTask;
+
+    set((state) => {
+      const nextState = {
+        backlog: [...state.backlog, savedTask]
+      };
+      if (shouldQueue) {
+        nextState.activeTasks = [...state.activeTasks, savedTask];
+      }
+      return nextState;
+    });
   },
 
   reset: async () => {
