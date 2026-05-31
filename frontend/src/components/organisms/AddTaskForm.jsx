@@ -14,13 +14,13 @@ export default function AddTaskForm({ isOpen, onClose }) {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setSuccess(false);
 
     try {
-      addTask({
+      await addTask({
         title,
         definition_of_done: dod,
         menu_category: category,
