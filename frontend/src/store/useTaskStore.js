@@ -28,6 +28,12 @@ export const useTaskStore = create((set, get) => ({
   fetchIsolateMenu: async (energy) => {
     set({ isLoading: true });
     
+    // 0. Reset any orphaned QUEUE tasks back to BACKLOG before picking
+    await supabase
+      .from('tasks')
+      .update({ status: 'BACKLOG' })
+      .eq('status', 'QUEUE');
+
     // 1. Tarik semua tugas dari BACKLOG di Supabase
     const { data: backlogData, error } = await supabase
       .from('tasks')
